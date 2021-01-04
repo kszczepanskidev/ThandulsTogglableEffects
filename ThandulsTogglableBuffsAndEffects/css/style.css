@@ -1,0 +1,61 @@
+.thandul-togglables-popup {
+    box-sizing: content-box;
+    font-size: 0px;
+    line-height: 1;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 10px #000;
+    color: #BBB;
+    border: 1px solid #000;
+    border-radius: 5px;
+    z-index: 30;
+    padding: 8px;
+}
+
+.thandul-togglables-popup ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+}
+
+.thandul-togglables-popup li {
+    display: inline-block;
+    width: 96px;
+    text-align: center;
+    padding: 0 8px 0 8px;
+    border-right: 1px solid #333;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.thandul-togglables-popup li img {
+    margin: 0 auto 0 auto;
+    width: 56px;
+}
+
+.thandul-togglables-popup li p {
+    margin-top: 8px 0 0 0;
+    padding: 0;
+    height: auto;
+    font-size: small;
+    overflow-wrap: break-word;
+}
+
+.thandul-togglables-popup li:hover {    
+    color: #FFF;
+    border: 1px solid red;
+    border-bottom: 1px solid #ff6400;
+    box-shadow: 0 0 10px #ff6400;
+}
+
+.thandul-togglables-scene-control img {
+    display: block;
+    width: inherit;
+    height: inherit;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: inherit;
+    border: none;
+}
