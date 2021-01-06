@@ -15,7 +15,7 @@ function getDurationData(minutes) {
     }
     : {
         startTime: game.time.worldTime,
-        seconds: minutes
+        seconds: 60 * minutes
     }
 }
 

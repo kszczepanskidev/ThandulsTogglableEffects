@@ -1,7 +1,7 @@
 function initialize(sceneControlHTML) {
     let sceneControlButton = 
     $(`<li class="scene-control thandul-togglables-scene-control" data-control="thandul-togglables" title="Thanduls Togglable Buffs and Effects">
-        <img src="modules/ThandulsTogglableBuffsAndEffects/media/logo.png" />
+        <img src="modules/ThandulsTogglableBuffsAndEffects/media/thandul.svg" />
         <ol class="control-tools">
             <div id="TTpopup" class="thandul-togglables-popup" style="display: none;">
             </div>

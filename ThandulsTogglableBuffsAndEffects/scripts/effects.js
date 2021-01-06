@@ -78,7 +78,7 @@ class ThandulBuffsAndEffects {
             name: "Barkskin",
             label: "Toggled Effect: Barkskin",
             icon: "modules/ThandulsTogglableBuffsAndEffects/media/barkskin.jpg",
-            duration: getDurationData(1),
+            duration: getDurationData(60),
             changes: [
                 {key: "data.attributes.ac.value", mode: 4, value: "16"},
               ],
@@ -184,7 +184,7 @@ class ThandulBuffsAndEffects {
             name: "Longstrider",
             label: "Toggled Effect: Longstrider",
             icon: "modules/ThandulsTogglableBuffsAndEffects/media/longstrider.jpg",
-            duration: getDurationData(10),
+            duration: getDurationData(60),
             changes: [
                 {key: "data.attributes.movement.burrow", mode: 2, value: 10},
                 {key: "data.attributes.movement.climb", mode: 2, value: 10},
@@ -271,7 +271,7 @@ class ThandulBuffsAndEffects {
             name: "Shield",
             label: "Toggled Effect: Shield",
             icon: "modules/ThandulsTogglableBuffsAndEffects/media/shield.jpg",
-            duration: getDurationData(1),
+            duration: getDurationData(0.1),
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "5"},
               ],
@@ -283,7 +283,7 @@ class ThandulBuffsAndEffects {
             name: "Shield of Faith",
             label: "Toggled Effect: Shield of Faith",
             icon: "modules/ThandulsTogglableBuffsAndEffects/media/shield-of-faith.jpg",
-            duration: getDurationData(1),
+            duration: getDurationData(10),
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "2"},
               ],
