@@ -1,5 +1,5 @@
 /* Ensures that all controls are displayed above elements from other mods, eg. Token Actions HUD */
-#controls { z-index: 100; }
+#controls { z-index: 300; }
 
 .thandul-togglables-popup {
     box-sizing: content-box;
