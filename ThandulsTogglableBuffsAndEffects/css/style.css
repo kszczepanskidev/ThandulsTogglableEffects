@@ -1,8 +1,11 @@
 /* Ensures that all controls are displayed above elements from other mods, eg. Token Actions HUD */
 #controls { z-index: 300; }
 
-.thandul-togglables-popup {
-    box-sizing: content-box;
+div.thandulTogglables {
+    display: inline-block;
+    position: relative;
+    top: -225px;
+    left: 50px;
     font-size: 0px;
     line-height: 1;
     background: rgba(0, 0, 0, 0.7);
@@ -10,19 +13,30 @@
     color: #BBB;
     border: 1px solid #000;
     border-radius: 5px;
-    z-index: 30;
-    padding: 8px;
 }
 
-.thandul-togglables-popup ul {
+div.thandulTogglables ul {
+    display: none;
     list-style-type: none;
     margin: 0;
-    padding: 0;
-    border-bottom: 1px solid #333;
+    padding: 0 8px 0 8px;
+    box-sizing: content-box;
+}
+
+div.thandulTogglables ul:first-child {
+    padding-top: 8px;
+}
+
+div.thandulTogglables ul:last-child {
+    padding-top: 8px;
+}
+
+#controls li.active[data-tool="thandulTogglables"] ul {
     display: flex;
 }
 
-.thandul-togglables-popup li {
+
+div.thandulTogglables li {
     display: inline-block;
     width: 96px;
     text-align: center;
@@ -33,12 +47,12 @@
     border: 1px solid rgba(0, 0, 0, 0);
 }
 
-.thandul-togglables-popup li img {
+div.thandulTogglables li img {
     margin: 0 auto 0 auto;
     width: 56px;
 }
 
-.thandul-togglables-popup li p {
+div.thandulTogglables li p {
     margin-top: 8px 0 0 0;
     padding: 0;
     height: auto;
@@ -46,7 +60,7 @@
     overflow-wrap: break-word;
 }
 
-.thandul-togglables-popup li:hover {    
+div.thandulTogglables li:hover {    
     color: #FFF;
     border: 1px solid red;
     border-bottom: 1px solid #ff6400;
@@ -61,4 +75,13 @@
     margin-right: 0;
     border-radius: inherit;
     border: none;
+}
+
+.fa-thandul {
+    content: url(../media/thandul.svg);
+    filter: brightness(80%);
+}
+
+#controls li.active > .fa-thandul, .fa-thandul:hover {
+    filter: brightness(100%);
 }

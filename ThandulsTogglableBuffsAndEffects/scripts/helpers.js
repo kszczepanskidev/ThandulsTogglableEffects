@@ -19,16 +19,6 @@ function getDurationData(minutes) {
     }
 }
 
-function injectActivationResetForLayers() {
-    canvas.stage.children.forEach(layer => {
-        defaultActivate = layer.activate;
-        layer.activate = function() {
-            this.deactivate();
-            return defaultActivate.apply(this, arguments);
-        };
-    });
-}
-
 function isBarbarianClassItem(item, index, array) {
 	return (item.type === "class" && item.name === "Barbarian");
 }

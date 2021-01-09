@@ -1,13 +1,21 @@
-Hooks.on('ready', () => { 
-    injectActivationResetForLayers();
-});
-
-Hooks.on('renderSceneControls', (_, html) => { 
-    initialize(html);
+Hooks.on('renderSceneControls', () => {
+	createTogglablesTable();
 });
 
 Hooks.on("createChatMessage", (message, params, actorId) => {
 	handleChatMessage(message);
+});
+
+Hooks.on("getSceneControlButtons", (sceneControlButtons) => {
+	let tokenButton = sceneControlButtons.filter(b => b.name === "token")[0];
+	if (!tokenButton) { return; }
+	tokenButton.tools.push(
+        {
+          name: "thandulTogglables",
+          title: "Thandul Togglables",
+          icon: "fas fa-thandul"
+		}
+	);
 });
 
 Hooks.once("init", () => {
