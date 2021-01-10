@@ -19,6 +19,6 @@ function getDurationData(minutes) {
     }
 }
 
-function isBarbarianClassItem(item, index, array) {
+function isBarbarianClassItem(item) {
 	return (item.type === "class" && item.name === "Barbarian");
 }

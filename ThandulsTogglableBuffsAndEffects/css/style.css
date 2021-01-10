@@ -2,7 +2,7 @@
 #controls { z-index: 300; }
 
 div.thandulTogglables {
-    display: inline-block;
+    display: none;
     position: relative;
     top: -225px;
     left: 50px;
@@ -16,7 +16,7 @@ div.thandulTogglables {
 }
 
 div.thandulTogglables ul {
-    display: none;
+    display: flex;
     list-style-type: none;
     margin: 0;
     padding: 0 8px 0 8px;
@@ -31,8 +31,8 @@ div.thandulTogglables ul:last-child {
     padding-top: 8px;
 }
 
-#controls li.active[data-tool="thandulTogglables"] ul {
-    display: flex;
+#controls li.active[data-tool="thandulTogglables"] div.thandulTogglables {
+    display: inline-block;
 }
 
 
