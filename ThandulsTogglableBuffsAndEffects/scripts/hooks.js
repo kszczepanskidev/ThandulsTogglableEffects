@@ -51,6 +51,22 @@ Hooks.once("init", () => {
 		default: true,
 		type: Boolean
 	});
+	game.settings.register("ThandulsTogglableBuffsAndEffects", "enabledEffects.FavouredEnemy", {
+		name: "Favoured Enemy",
+		hint: "Enables Favoured Enemy toggle.",
+		scope: "client",
+		config: true,
+		default: true,
+		type: Boolean
+	});
+	game.settings.register("ThandulsTogglableBuffsAndEffects", "enabledEffects.GreaterFavouredEnemy", {
+		name: "Greater Favoured Enemy",
+		hint: "Enables Greater Favoured Enemy toggle.",
+		scope: "client",
+		config: true,
+		default: true,
+		type: Boolean
+	});
 	game.settings.register("ThandulsTogglableBuffsAndEffects", "enabledEffects.Fly", {
 		name: "Fly",
 		hint: "Enables Fly toggle.",

@@ -6,6 +6,8 @@ class ThandulBuffsAndEffects {
         if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Barkskin")) { enabledEffects.push(this.barkskin()); }
         if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Bless")) { enabledEffects.push(this.bless()); }
         if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Enlarge")) { enabledEffects.push(this.enlarge()); }
+        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.FavouredEnemy")) { enabledEffects.push(this.favouredEnemy()); }
+        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.GreaterFavouredEnemy")) { enabledEffects.push(this.greaterFavouredEnemy()); }
         if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Fly")) { enabledEffects.push(this.fly()); }
         if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.FortunesFavor")) { enabledEffects.push(this.fortunesFavor()); }
         if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.GiftOfAlacrity")) { enabledEffects.push(this.giftOfAlacrity()); }
@@ -38,6 +40,8 @@ class ThandulBuffsAndEffects {
             case "Barkskin": effect = this.barkskin(); break;
             case "Bless": effect = this.bless(); break;
             case "Enlarge": effect = this.enlarge(); break;
+            case "Favoured Enemy": effect = this.favouredEnemy(); break;
+            case "Greater Favoured Enemy": effect = this.greaterFavouredEnemy(); break;
             case "Fly": effect = this.fly(); break;
             case "Fortune's Favor": effect = this.fortunesFavor(); break;
             case "Gift of Alacrity": effect = this.giftOfAlacrity(); break;
@@ -299,6 +303,32 @@ class ThandulBuffsAndEffects {
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "-2"},
                 {key: "data.abilities.dex.save", mode: 2, value: "-2"},
+              ],
+        };
+    }
+
+    static favouredEnemy() { 
+        return {
+            name: "Favoured Enemy",
+            label: "Toggled Effect: Favoured Enemy",
+            icon: "modules/ThandulsTogglableBuffsAndEffects/media/favoured-enemy.png",
+            duration: getDurationData(100),
+            changes: [
+                {key: "data.bonuses.mwak.damage", mode: 2, value: "2"},
+                {key: "data.bonuses.rwak.damage", mode: 2, value: "2"},
+              ],
+        };
+    }
+
+    static greaterFavouredEnemy() { 
+        return {
+            name: "Greater Favoured Enemy",
+            label: "Toggled Effect: Greater Favoured Enemy",
+            icon: "modules/ThandulsTogglableBuffsAndEffects/media/favoured-enemy.png",
+            duration: getDurationData(100),
+            changes: [
+                {key: "data.bonuses.mwak.damage", mode: 2, value: "4"},
+                {key: "data.bonuses.rwak.damage", mode: 2, value: "4"},
               ],
         };
     }
