@@ -3,6 +3,7 @@ Hooks.on('renderSceneControls', () => {
 });
 
 Hooks.on("createChatMessage", (message, params, actorId) => {
+	if (game.user.role < 4) { return; }
 	handleChatMessage(message);
 });
 
