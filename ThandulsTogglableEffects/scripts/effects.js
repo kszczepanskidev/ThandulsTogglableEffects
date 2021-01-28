@@ -218,7 +218,7 @@ class ThandulBuffsAndEffects {
             icon: "modules/ThandulsTogglableEffects/media/pass-without-trace.jpg",
             duration: getDurationData(60),
             changes: [
-                {key: "data.skills.ste.value", mode: 2, value: "10"},
+                {key: "data.skills.ste.mod", mode: 2, value: "10"},
               ],
         };
     }
