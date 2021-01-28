@@ -2,25 +2,25 @@ class ThandulBuffsAndEffects {
 
     static getEnabledEffects() {
         let enabledEffects = [];
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Bane")) { enabledEffects.push(this.bane()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Barkskin")) { enabledEffects.push(this.barkskin()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Bless")) { enabledEffects.push(this.bless()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Enlarge")) { enabledEffects.push(this.enlarge()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.FavouredEnemy")) { enabledEffects.push(this.favouredEnemy()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.GreaterFavouredEnemy")) { enabledEffects.push(this.greaterFavouredEnemy()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Fly")) { enabledEffects.push(this.fly()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.FortunesFavor")) { enabledEffects.push(this.fortunesFavor()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.GiftOfAlacrity")) { enabledEffects.push(this.giftOfAlacrity()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Guidance")) { enabledEffects.push(this.guidance()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Haste")) { enabledEffects.push(this.haste()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Longstrider")) { enabledEffects.push(this.longstrider()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.MageArmor")) { enabledEffects.push(this.mageArmor()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.PassWithoutTrace")) { enabledEffects.push(this.passWithoutTrace()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Rage")) { enabledEffects.push(this.rage()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Reduce")) { enabledEffects.push(this.reduce()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Shield")) { enabledEffects.push(this.shield()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.ShieldOfFaith")) { enabledEffects.push(this.shieldOfFaith()); }
-        if (game.settings.get("ThandulsTogglableBuffsAndEffects", "enabledEffects.Slow")) { enabledEffects.push(this.slow()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Bane")) { enabledEffects.push(this.bane()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Barkskin")) { enabledEffects.push(this.barkskin()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Bless")) { enabledEffects.push(this.bless()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Enlarge")) { enabledEffects.push(this.enlarge()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.FavouredEnemy")) { enabledEffects.push(this.favouredEnemy()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.GreaterFavouredEnemy")) { enabledEffects.push(this.greaterFavouredEnemy()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Fly")) { enabledEffects.push(this.fly()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.FortunesFavor")) { enabledEffects.push(this.fortunesFavor()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.GiftOfAlacrity")) { enabledEffects.push(this.giftOfAlacrity()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Guidance")) { enabledEffects.push(this.guidance()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Haste")) { enabledEffects.push(this.haste()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Longstrider")) { enabledEffects.push(this.longstrider()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.MageArmor")) { enabledEffects.push(this.mageArmor()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.PassWithoutTrace")) { enabledEffects.push(this.passWithoutTrace()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Rage")) { enabledEffects.push(this.rage()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Reduce")) { enabledEffects.push(this.reduce()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Shield")) { enabledEffects.push(this.shield()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.ShieldOfFaith")) { enabledEffects.push(this.shieldOfFaith()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Slow")) { enabledEffects.push(this.slow()); }
         return enabledEffects;
     }
 
@@ -65,7 +65,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Bane",
             label: "Toggled Effect: Bane",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/bane.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/bane.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.bonuses.abilities.save", mode: 2, value: "-1d4"},
@@ -81,7 +81,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Barkskin",
             label: "Toggled Effect: Barkskin",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/barkskin.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/barkskin.jpg",
             duration: getDurationData(60),
             changes: [
                 {key: "data.attributes.ac.value", mode: 4, value: "16"},
@@ -93,7 +93,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Bless",
             label: "Toggled Effect: Bless",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/bless.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/bless.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.bonuses.abilities.save", mode: 2, value: "1d4"},
@@ -109,7 +109,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Enlarge",
             label: "Toggled Effect: Enlarge",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/enlargereduce.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/enlargereduce.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.bonuses.mwak.damage", mode: 2, value: "1d4"},
@@ -122,7 +122,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Fly",
             label: "Toggled Effect: Fly",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/fly.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/fly.jpg",
             duration: getDurationData(10),
             changes: [
                 {key: "data.attributes.movement.fly", mode: 4, value: 60},
@@ -134,7 +134,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Fortune's Favor",
             label: "Toggled Effect: Fortune's Favor",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/fortunes-favor.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/fortunes-favor.jpg",
             duration: getDurationData(60),
             changes: [
                 {key: "data.attributes.inspiration", mode: 4, value: "1"},
@@ -146,7 +146,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Gift of Alacrity",
             label: "Toggled Effect: Gift of Alacrity",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/gift-of-alacrity.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/gift-of-alacrity.jpg",
             duration: getDurationData(480),
             changes: [
                 {key: "data.attributes.init.value", mode: 2, value: "1d8"},
@@ -158,7 +158,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Guidance",
             label: "Toggled Effect: Guidance",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/guidance.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/guidance.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.bonuses.abilities.check", mode: 2, value: "1d4"},
@@ -170,7 +170,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Haste",
             label: "Toggled Effect: Haste",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/haste.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/haste.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "2"},
@@ -187,7 +187,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Longstrider",
             label: "Toggled Effect: Longstrider",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/longstrider.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/longstrider.jpg",
             duration: getDurationData(60),
             changes: [
                 {key: "data.attributes.movement.burrow", mode: 2, value: 10},
@@ -203,7 +203,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Mage Armor",
             label: "Toggled Effect: Mage Armor",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/mage-armor.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/mage-armor.jpg",
             duration: getDurationData(480),
             changes: [
                 {key: "data.attributes.ac.value", mode: 4, value: 13 + dexMod},
@@ -215,7 +215,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Pass without Trace",
             label: "Toggled Effect: Pass without Trace",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/pass-without-trace.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/pass-without-trace.jpg",
             duration: getDurationData(60),
             changes: [
                 {key: "data.skills.ste.value", mode: 2, value: "10"},
@@ -227,7 +227,7 @@ class ThandulBuffsAndEffects {
         let rageData = {
             name: "Rage",
             label: "Toggled Effect: Rage",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/rage.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/rage.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.bonuses.mwak.damage", mode: 2, value: "2"},
@@ -261,7 +261,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Reduce",
             label: "Toggled Effect: Reduce",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/enlargereduce.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/enlargereduce.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.bonuses.mwak.damage", mode: 2, value: "-1d4"},
@@ -274,7 +274,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Shield",
             label: "Toggled Effect: Shield",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/shield.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/shield.jpg",
             duration: getDurationData(0.1),
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "5"},
@@ -286,7 +286,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Shield of Faith",
             label: "Toggled Effect: Shield of Faith",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/shield-of-faith.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/shield-of-faith.jpg",
             duration: getDurationData(10),
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "2"},
@@ -298,7 +298,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Slow",
             label: "Toggled Effect: Slow",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/slow.jpg",
+            icon: "modules/ThandulsTogglableEffects/media/slow.jpg",
             duration: getDurationData(1),
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "-2"},
@@ -311,7 +311,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Favoured Enemy",
             label: "Toggled Effect: Favoured Enemy",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/favoured-enemy.png",
+            icon: "modules/ThandulsTogglableEffects/media/favoured-enemy.png",
             duration: getDurationData(100),
             changes: [
                 {key: "data.bonuses.mwak.damage", mode: 2, value: "2"},
@@ -324,7 +324,7 @@ class ThandulBuffsAndEffects {
         return {
             name: "Greater Favoured Enemy",
             label: "Toggled Effect: Greater Favoured Enemy",
-            icon: "modules/ThandulsTogglableBuffsAndEffects/media/favoured-enemy.png",
+            icon: "modules/ThandulsTogglableEffects/media/favoured-enemy.png",
             duration: getDurationData(100),
             changes: [
                 {key: "data.bonuses.mwak.damage", mode: 2, value: "4"},
