@@ -1,4 +1,5 @@
 Hooks.on('renderSceneControls', () => {
+	if (!game.settings.get("ThandulsTogglableBuffsAndEffects", "showForPlayers") && game.user.role < 3) { return; }
 	createTogglablesTable();
 });
 
@@ -8,6 +9,7 @@ Hooks.on("createChatMessage", (message, params, actorId) => {
 });
 
 Hooks.on("getSceneControlButtons", (sceneControlButtons) => {
+	if (!game.settings.get("ThandulsTogglableBuffsAndEffects", "showForPlayers") && game.user.role < 3) { return; }
 	let tokenButton = sceneControlButtons.filter(b => b.name === "token")[0];
 	if (!tokenButton) { return; }
 	tokenButton.tools.push(
@@ -20,6 +22,17 @@ Hooks.on("getSceneControlButtons", (sceneControlButtons) => {
 });
 
 Hooks.once("init", () => {
+	game.settings.register("ThandulsTogglableBuffsAndEffects", "showForPlayers", {
+		name: "Show for players",
+		hint: "Enables panel with effect toggles for non-gm players.",
+		scope: "world",
+		config: true,
+		default: true,
+		type: Boolean,
+        onChange: _ => window.location.reload()
+	});
+
+	// Enabling effects for client.
 	game.settings.register("ThandulsTogglableBuffsAndEffects", "enabledEffects.Bane", {
 		name: "Bane",
 		hint: "Enables Bane toggle.",

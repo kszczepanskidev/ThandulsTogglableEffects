@@ -1,4 +1,4 @@
-# ThandulsTogglableBuffsAndEffects
+# ThandulsTogglableEffects
 Foundry VTT module that provides custom scene control which allows toggling buffs and effects for most of common spells on actors associated with selected tokens.
 
 Effects panel in scene controls:
