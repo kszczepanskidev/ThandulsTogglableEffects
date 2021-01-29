@@ -7,11 +7,12 @@ function arrayChunk(array, perChunk) {
     }, []);
 }
 
-function getDurationData(minutes) {
+function getDurationData(minutes, turns=0) {
     return game.combat
     ? {
         startRound: game.combat.round,
-        rounds: 10 * minutes,
+        rounds: turns > 0 ? 0 : 10 * minutes,
+        turns: turns
     }
     : {
         startTime: game.time.worldTime,
@@ -21,4 +22,8 @@ function getDurationData(minutes) {
 
 function isBarbarianClassItem(item) {
 	return (item.type === "class" && item.name === "Barbarian");
+}
+
+function isDAEEnabled() {
+    return game.modules.get("dae")?.active;
 }

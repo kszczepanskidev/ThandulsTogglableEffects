@@ -15,7 +15,7 @@ class ThandulBuffsAndEffects {
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Haste")) { enabledEffects.push(this.haste()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Longstrider")) { enabledEffects.push(this.longstrider()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.MageArmor")) { enabledEffects.push(this.mageArmor()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.PassWithoutTrace")) { enabledEffects.push(this.passWithoutTrace()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.PassWithoutTrace") && isDAEEnabled()) { enabledEffects.push(this.passWithoutTrace()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Rage")) { enabledEffects.push(this.rage()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Reduce")) { enabledEffects.push(this.reduce()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Shield")) { enabledEffects.push(this.shield()); }
@@ -52,7 +52,7 @@ class ThandulBuffsAndEffects {
             case "Pass without Trace": effect = this.passWithoutTrace(); break;
             case "Rage": effect = this.rage(actor); break;
             case "Reduce": effect = this.reduce(); break;
-            case "Shield": effect = this.shield(); break;
+            case "Shield": effect = this.shield(actor); break;
             case "Shield of Faith": effect = this.shieldOfFaith(); break;
             case "Slow": effect = this.slow(); break;
             default: return undefined;
@@ -84,7 +84,7 @@ class ThandulBuffsAndEffects {
             icon: "modules/ThandulsTogglableEffects/media/barkskin.jpg",
             duration: getDurationData(60),
             changes: [
-                {key: "data.attributes.ac.value", mode: 4, value: "16"},
+                {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 60},
               ],
         };
     }
@@ -173,7 +173,7 @@ class ThandulBuffsAndEffects {
             icon: "modules/ThandulsTogglableEffects/media/haste.jpg",
             duration: getDurationData(1),
             changes: [
-                {key: "data.attributes.ac.value", mode: 2, value: "2"},
+                {key: "data.attributes.ac.value", mode: 2, value: 2, priority: 80},
                 {key: "data.attributes.movement.burrow", mode: 1, value: 2},
                 {key: "data.attributes.movement.climb", mode: 1, value: 2},
                 {key: "data.attributes.movement.fly", mode: 1, value: 2},
@@ -206,7 +206,7 @@ class ThandulBuffsAndEffects {
             icon: "modules/ThandulsTogglableEffects/media/mage-armor.jpg",
             duration: getDurationData(480),
             changes: [
-                {key: "data.attributes.ac.value", mode: 4, value: 13 + dexMod},
+                {key: "data.attributes.ac.value", mode: 4, value: isDAEEnabled() ? '13 + @data.abilities.dex.mod' : 13 + dexMod},
               ],
         };
     }
@@ -218,7 +218,7 @@ class ThandulBuffsAndEffects {
             icon: "modules/ThandulsTogglableEffects/media/pass-without-trace.jpg",
             duration: getDurationData(60),
             changes: [
-                {key: "data.skills.ste.value", mode: 2, value: "10"},
+                {key: "data.skills.ste.mod", mode: 2, value: "10"},
               ],
         };
     }
@@ -270,12 +270,19 @@ class ThandulBuffsAndEffects {
         };
     }
 
-    static shield() { 
+    static shield(actor=undefined) { 
+        let currentCombat = game.combats.combats.filter(combat => combat.combatants.map(combatant => combatant.actor.id).includes(actor != undefined ? actor.id : ''))[0]
+        let combatantCount = currentCombat != undefined ? currentCombat.combatants.length : 0;
         return {
             name: "Shield",
             label: "Toggled Effect: Shield",
             icon: "modules/ThandulsTogglableEffects/media/shield.jpg",
-            duration: getDurationData(0.1),
+            duration: getDurationData(0.1, combatantCount + 1),
+            flags: {
+                dae: {
+                    specialDuration: ["turnStart"]
+                }
+            },
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "5"},
               ],
