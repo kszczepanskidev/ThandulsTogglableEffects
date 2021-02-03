@@ -13,6 +13,9 @@ class ThandulBuffsAndEffects {
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.GiftOfAlacrity")) { enabledEffects.push(this.giftOfAlacrity()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Guidance")) { enabledEffects.push(this.guidance()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Haste")) { enabledEffects.push(this.haste()); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.HuntersMark1h")) { enabledEffects.push(this.huntersMark(1)); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.HuntersMark8h")) { enabledEffects.push(this.huntersMark(8)); }
+        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.HuntersMark24h")) { enabledEffects.push(this.huntersMark(24)); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Longstrider")) { enabledEffects.push(this.longstrider()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.MageArmor")) { enabledEffects.push(this.mageArmor()); }
         if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.PassWithoutTrace") && isDAEEnabled()) { enabledEffects.push(this.passWithoutTrace()); }
@@ -47,6 +50,9 @@ class ThandulBuffsAndEffects {
             case "Gift of Alacrity": effect = this.giftOfAlacrity(); break;
             case "Guidance": effect = this.guidance(); break;
             case "Haste": effect = this.haste(); break;
+            case "Hunter's Mark 1h": effect = this.huntersMark(1); break;
+            case "Hunter's Mark 8h": effect = this.huntersMark(8); break;
+            case "Hunter's Mark 24h": effect = this.huntersMark(24); break;
             case "Longstrider": effect = this.longstrider(); break;
             case "Mage Armor": effect = this.mageArmor(actor.data.data.abilities.dex.mod); break;
             case "Pass without Trace": effect = this.passWithoutTrace(); break;
@@ -183,6 +189,19 @@ class ThandulBuffsAndEffects {
         };
     }
 
+    static huntersMark(durationHours) { 
+        return {
+            name: "Hunter's Mark " + durationHours + "h",
+            label: "Toggled Effect: Hunter's Mark",
+            icon: "modules/ThandulsTogglableEffects/media/hunters-mark.jpg",
+            duration: getDurationData(60 * durationHours),
+            changes: [
+                {key: "data.bonuses.mwak.damage", mode: 2, value: "1d6"},
+                {key: "data.bonuses.rwak.damage", mode: 2, value: "1d6"},
+              ],
+        };
+    }
+
     static longstrider() { 
         return {
             name: "Longstrider",
@@ -238,6 +257,7 @@ class ThandulBuffsAndEffects {
         };
         if (!actor) { return rageData; }
         const classItem = actor.data.items.filter(isBarbarianClassItem)[0];
+        if (!classItem) { ui.notifications.warn("Selected actor is not a Barbarian"); return {} }
         if(classItem.data.subclass === "Path of the Totem Warrior") {
             rageData.changes.push(
                 ...[
