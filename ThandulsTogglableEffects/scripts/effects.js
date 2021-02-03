@@ -238,6 +238,7 @@ class ThandulBuffsAndEffects {
         };
         if (!actor) { return rageData; }
         const classItem = actor.data.items.filter(isBarbarianClassItem)[0];
+        if (!classItem) { ui.notifications.warn("Selected actor is not a Barbarian"); return {} }
         if(classItem.data.subclass === "Path of the Totem Warrior") {
             rageData.changes.push(
                 ...[
