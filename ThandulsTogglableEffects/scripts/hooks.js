@@ -121,6 +121,30 @@ Hooks.once("init", () => {
 		default: true,
 		type: Boolean
 	});
+	game.settings.register("ThandulsTogglableEffects", "enabledEffects.HuntersMark1h", {
+		name: "Hunter's Mark 1h",
+		hint: "Enables Hunter's Mark (1h concentration) toggle.",
+		scope: "client",
+		config: true,
+		default: true,
+		type: Boolean
+	});
+	game.settings.register("ThandulsTogglableEffects", "enabledEffects.HuntersMark8h", {
+		name: "Hunter's Mark 8h",
+		hint: "Enables Hunter's Mark (8h concentration) toggle.",
+		scope: "client",
+		config: true,
+		default: true,
+		type: Boolean
+	});
+	game.settings.register("ThandulsTogglableEffects", "enabledEffects.HuntersMark24h", {
+		name: "Hunter's Mark 24h",
+		hint: "Enables Hunter's Mark (24h concentration) toggle.",
+		scope: "client",
+		config: true,
+		default: true,
+		type: Boolean
+	});
 	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Longstrider", {
 		name: "Longstrider",
 		hint: "Enables Longstrider toggle.",
