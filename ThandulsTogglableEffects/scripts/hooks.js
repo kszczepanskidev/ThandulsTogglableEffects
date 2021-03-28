@@ -41,6 +41,15 @@ Hooks.once("init", () => {
 		type: String
 	});
 
+	game.settings.register("ThandulsTogglableEffects", "sortToggles", {
+		name: "Sort effect toggles by name",
+		hint: "Effect toggles can be sroted on the panel alphabetically by name",
+		scope: "world",
+		config: true,
+		default: true,
+		type: Boolean
+	});
+
 	game.settings.register("ThandulsTogglableEffects", "enableAutomation", {
 		name: "Enable effect automation",
 		hint: "Some effects like Barkskin, Rage, Mage Armor and Shield can be automatically applied to Actor that used appropiate skill.",
@@ -51,180 +60,13 @@ Hooks.once("init", () => {
 	});
 
 	// Enabling effects for client.
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Bane", {
-		name: "Bane",
-		hint: "Enables Bane toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Barkskin", {
-		name: "Barkskin",
-		hint: "Enables Barkskin toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Bless", {
-		name: "Bless",
-		hint: "Enables Bless toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Enlarge", {
-		name: "Enlarge",
-		hint: "Enables Enlarge toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.FavouredEnemy", {
-		name: "Favoured Enemy",
-		hint: "Enables Favoured Enemy toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.GreaterFavouredEnemy", {
-		name: "Greater Favoured Enemy",
-		hint: "Enables Greater Favoured Enemy toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Fly", {
-		name: "Fly",
-		hint: "Enables Fly toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.FortunesFavor", {
-		name: "Fortune's Favor",
-		hint: "Enables Fortune's Favor toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.GiftOfAlacrity", {
-		name: "Gift of Alacrity",
-		hint: "Enables Gift of Alacrity toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Guidance", {
-		name: "Guidance",
-		hint: "Enables Guidance toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Haste", {
-		name: "Haste",
-		hint: "Enables Haste toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.HuntersMark1h", {
-		name: "Hunter's Mark 1h",
-		hint: "Enables Hunter's Mark (1h concentration) toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.HuntersMark8h", {
-		name: "Hunter's Mark 8h",
-		hint: "Enables Hunter's Mark (8h concentration) toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.HuntersMark24h", {
-		name: "Hunter's Mark 24h",
-		hint: "Enables Hunter's Mark (24h concentration) toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Longstrider", {
-		name: "Longstrider",
-		hint: "Enables Longstrider toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.MageArmor", {
-		name: "Mage Armor",
-		hint: "Enables Mage Armor toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.PassWithoutTrace", {
-		name: "Pass without Trace",
-		hint: "Enables Pass without Trace toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Rage", {
-		name: "Rage",
-		hint: "Enables Rage toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Reduce", {
-		name: "Reduce",
-		hint: "Enables Reduce toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Shield", {
-		name: "Shield",
-		hint: "Enables Shield toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.ShieldOfFaith", {
-		name: "Shield of Faith",
-		hint: "Enables Shield of Faith toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
-	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Slow", {
-		name: "Slow",
-		hint: "Enables Slow toggle.",
-		scope: "client",
-		config: true,
-		default: true,
-		type: Boolean
-	});
+	ThandulBuffsAndEffects.effects.forEach(effect => game.settings.register("ThandulsTogglableEffects", "enabledEffects." + effect.settingsKey, {
+			name: effect.name,
+			hint: "Enables " + effect.name +  " toggle.",
+			scope: "client",
+			config: true,
+			default: true,
+			type: Boolean
+		})
+	);
 });

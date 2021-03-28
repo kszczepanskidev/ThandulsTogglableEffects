@@ -1,29 +1,137 @@
+class TogglableEffect {
+    constructor(
+        name,
+        settingsKey,
+        icon,
+        durationMinutes,
+        durationTurns,
+        flags,
+        effects = []
+    ) {
+        this.name = name
+        this.settingsKey = settingsKey
+        this.icon = icon
+        this.durationMinutes = durationMinutes
+        this.durationTurns = durationTurns
+        this.flags = flags
+        this.effects = effects
+    }
+
+    effectDict(customEffectValue) {
+        this.effects.forEach(effect => effect.value = typeof effect.value == "string" ? effect.value.replace("{value}", customEffectValue || 0) : effect.value)
+        return {
+            name: this.name,
+            label: "Toggled Effect: " + this.name,
+            icon: this.icon,
+            duration: getDurationData(this.durationMinutes, eval(this.durationTurns || "")),
+            flags: this.flags,
+            changes: this.effects
+        };
+    }
+}
+
 class ThandulBuffsAndEffects {
 
+    static effects = [
+        new TogglableEffect("Bane", "Bane", "modules/ThandulsTogglableEffects/media/bane.jpg", 1, undefined, {}, [
+            {key: "data.bonuses.abilities.save", mode: 2, value: "-1d4"},
+            {key: "data.bonuses.msak.attack", mode: 2, value: "-1d4"},
+            {key: "data.bonuses.mwak.attack", mode: 2, value: "-1d4"},
+            {key: "data.bonuses.rsak.attack", mode: 2, value: "-1d4"},
+            {key: "data.bonuses.rwak.attack", mode: 2, value: "-1d4"},
+        ]),
+        new TogglableEffect("Barkskin", "Barkskin", "modules/ThandulsTogglableEffects/media/barkskin.jpg", 60, undefined, {}, [
+            {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 60}
+        ]),
+        new TogglableEffect("Bless", "Bless", "modules/ThandulsTogglableEffects/media/bless.jpg", 1, undefined, {}, [
+            {key: "data.bonuses.abilities.save", mode: 2, value: "+1d4"},
+            {key: "data.bonuses.msak.attack", mode: 2, value: "+1d4"},
+            {key: "data.bonuses.mwak.attack", mode: 2, value: "+1d4"},
+            {key: "data.bonuses.rsak.attack", mode: 2, value: "+1d4"},
+            {key: "data.bonuses.rwak.attack", mode: 2, value: "+1d4"},
+        ]),
+        new TogglableEffect("Enlarge", "Enlarge", "modules/ThandulsTogglableEffects/media/enlargereduce.jpg", 1, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d4"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d4"},
+        ]),
+        new TogglableEffect("Fly", "Fly", "modules/ThandulsTogglableEffects/media/fly.jpg", 10, undefined, {}, [
+            {key: "data.attributes.movement.fly", mode: 4, value: 60},
+        ]),
+        new TogglableEffect("Fortune's Favor", "Fortune's Favor", "modules/ThandulsTogglableEffects/media/fortunes-favor.jpg", 60, undefined, {}, [
+            {key: "data.attributes.inspiration", mode: 4, value: "1"},
+        ]),
+        new TogglableEffect("Gift of Alacrity", "Gift of Alacrity", "modules/ThandulsTogglableEffects/media/gift-of-alacrity.jpg", 480, undefined, {}, [
+            {key: "data.attributes.init.value", mode: 2, value: "+1d8"},
+        ]),
+        new TogglableEffect("Guidance", "Guidance", "modules/ThandulsTogglableEffects/media/guidance.jpg", 1, undefined, {
+            dae: {
+                specialDuration: ["isCheck", "isSkill"]
+            }
+        }, [
+            {key: "data.bonuses.abilities.check", mode: 2, value: "+1d4"},
+            {key: "data.attributes.init.value", mode: 2, value: "+1d4"},
+        ]),
+        new TogglableEffect("Haste", "Haste", "modules/ThandulsTogglableEffects/media/haste.jpg", 1, undefined, {}, [
+            {key: "data.attributes.ac.value", mode: 2, value: "+2", priority: 80},
+            {key: "data.attributes.movement.burrow", mode: 1, value: 2},
+            {key: "data.attributes.movement.climb", mode: 1, value: 2},
+            {key: "data.attributes.movement.fly", mode: 1, value: 2},
+            {key: "data.attributes.movement.swim", mode: 1, value: 2},
+            {key: "data.attributes.movement.walk", mode: 1, value: 2},
+        ]),
+        new TogglableEffect("Hunter's Mark 1h", "Hunter's Mark 1h", "modules/ThandulsTogglableEffects/media/hunters-mark.jpg", 60, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d6"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d6"},
+        ]),
+        new TogglableEffect("Hunter's Mark 8h", "Hunter's Mark 8h", "modules/ThandulsTogglableEffects/media/hunters-mark.jpg", 60 * 8, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d6"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d6"},
+        ]),
+        new TogglableEffect("Hunter's Mark 24h", "Hunter's Mark 24h", "modules/ThandulsTogglableEffects/media/hunters-mark.jpg", 60 * 24, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d6"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d6"},
+        ]),
+        new TogglableEffect("Longstrider", "Longstrider", "modules/ThandulsTogglableEffects/media/longstrider.jpg", 60, undefined, {}, [
+            {key: "data.attributes.movement.burrow", mode: 2, value: "+10"},
+            {key: "data.attributes.movement.climb", mode: 2, value: "+10"},
+            {key: "data.attributes.movement.fly", mode: 2, value: "+10"},
+            {key: "data.attributes.movement.swim", mode: 2, value: "+10"},
+            {key: "data.attributes.movement.walk", mode: 2, value: "+10"},
+        ]),
+        new TogglableEffect("Mage Armor", "Mage Armor", "modules/ThandulsTogglableEffects/media/mage-armor.jpg", 480, undefined, {}, [
+            {key: "data.attributes.ac.value", mode: 4, value: "{value}"},
+        ]),
+        new TogglableEffect("Pass without Trace", "Pass without Trace", "modules/ThandulsTogglableEffects/media/pass-without-trace.jpg", 60, undefined, {}, [
+            {key: "data.skills.ste.mod", mode: 2, value: "+10"},
+        ]),
+        new TogglableEffect("Rage", "Rage", "modules/ThandulsTogglableEffects/media/rage.jpg"),
+        new TogglableEffect("Reduce", "Reduce", "modules/ThandulsTogglableEffects/media/enlargereduce.jpg", 1, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "-1d4"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "-1d4"},
+        ]),
+        new TogglableEffect("Shield", "Shield", "modules/ThandulsTogglableEffects/media/shield.jpg"),
+        new TogglableEffect("Shield of Faith", "Shield of Faith", "modules/ThandulsTogglableEffects/media/shield-of-faith.jpg", 1, undefined, {}, [
+            {key: "data.attributes.ac.value", mode: 2, value: "+2"},
+        ]),
+        new TogglableEffect("Slow", "Slow", "modules/ThandulsTogglableEffects/media/slow.jpg", 1, undefined, {}, [
+            {key: "data.attributes.ac.value", mode: 2, value: "-2"},
+            {key: "data.abilities.dex.save", mode: 2, value: "-2"},
+        ]),
+        new TogglableEffect("Favoured Enemy", "Favoured Enemy", "modules/ThandulsTogglableEffects/media/favoured-enemy.png", 100, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+2"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+2"},
+        ]),
+        new TogglableEffect("Greater Favoured Enemy", "Greater Favoured Enemy", "modules/ThandulsTogglableEffects/media/favoured-enemy.png", 100, undefined, {}, [
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+4"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+4"},
+        ]),
+    ];
+
     static getEnabledEffects() {
-        let enabledEffects = [];
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Bane")) { enabledEffects.push(this.bane()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Barkskin")) { enabledEffects.push(this.barkskin()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Bless")) { enabledEffects.push(this.bless()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Enlarge")) { enabledEffects.push(this.enlarge()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.FavouredEnemy")) { enabledEffects.push(this.favouredEnemy()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.GreaterFavouredEnemy")) { enabledEffects.push(this.greaterFavouredEnemy()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Fly")) { enabledEffects.push(this.fly()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.FortunesFavor")) { enabledEffects.push(this.fortunesFavor()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.GiftOfAlacrity")) { enabledEffects.push(this.giftOfAlacrity()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Guidance")) { enabledEffects.push(this.guidance()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Haste")) { enabledEffects.push(this.haste()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.HuntersMark1h")) { enabledEffects.push(this.huntersMark(1)); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.HuntersMark8h")) { enabledEffects.push(this.huntersMark(8)); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.HuntersMark24h")) { enabledEffects.push(this.huntersMark(24)); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Longstrider")) { enabledEffects.push(this.longstrider()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.MageArmor")) { enabledEffects.push(this.mageArmor()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.PassWithoutTrace") && isDAEEnabled()) { enabledEffects.push(this.passWithoutTrace()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Rage")) { enabledEffects.push(this.rage()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Reduce")) { enabledEffects.push(this.reduce()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Shield")) { enabledEffects.push(this.shield()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.ShieldOfFaith")) { enabledEffects.push(this.shieldOfFaith()); }
-        if (game.settings.get("ThandulsTogglableEffects", "enabledEffects.Slow")) { enabledEffects.push(this.slow()); }
+        let enabledEffects = this.effects.filter(effect => game.settings.get("ThandulsTogglableEffects", "enabledEffects." + effect.settingsKey));
+        if (game.settings.get("ThandulsTogglableEffects", "sortToggles")) {
+            enabledEffects = enabledEffects.sort((lhs, rhs) => (lhs.name > rhs.name) ? 1 : ((rhs.name > lhs.name) ? -1 : 0));
+        }
         return enabledEffects;
     }
 
@@ -37,215 +145,22 @@ class ThandulBuffsAndEffects {
     }
 
     static getEffectForActor(actor, toggleEvent) {
+        let togglableEffect = this.effects.filter(effect => effect.name == toggleEvent.target.dataset.effectName)[0];
+        if (!togglableEffect) { return; }
+        
         let effect;
+        let customEffectValue;
         switch(toggleEvent.target.dataset.effectName) {
-            case "Bane": effect = this.bane(); break;
-            case "Barkskin": effect = this.barkskin(); break;
-            case "Bless": effect = this.bless(); break;
-            case "Enlarge": effect = this.enlarge(); break;
-            case "Favoured Enemy": effect = this.favouredEnemy(); break;
-            case "Greater Favoured Enemy": effect = this.greaterFavouredEnemy(); break;
-            case "Fly": effect = this.fly(); break;
-            case "Fortune's Favor": effect = this.fortunesFavor(); break;
-            case "Gift of Alacrity": effect = this.giftOfAlacrity(); break;
-            case "Guidance": effect = this.guidance(); break;
-            case "Haste": effect = this.haste(); break;
-            case "Hunter's Mark 1h": effect = this.huntersMark(1); break;
-            case "Hunter's Mark 8h": effect = this.huntersMark(8); break;
-            case "Hunter's Mark 24h": effect = this.huntersMark(24); break;
-            case "Longstrider": effect = this.longstrider(); break;
-            case "Mage Armor": effect = this.mageArmor(actor.data.data.abilities.dex.mod); break;
-            case "Pass without Trace": effect = this.passWithoutTrace(); break;
+            default: break;
+            case "Mage Armor": customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString(); break;
+        }
+        switch (togglableEffect.name) {
             case "Rage": effect = this.rage(actor); break;
-            case "Reduce": effect = this.reduce(); break;
             case "Shield": effect = this.shield(actor); break;
-            case "Shield of Faith": effect = this.shieldOfFaith(); break;
-            case "Slow": effect = this.slow(); break;
-            default: return undefined;
+            default: effect = togglableEffect.effectDict(customEffectValue); break;
         }
         effect.origin = "Actor." + actor.id;
         return effect;
-    }
-
-    static bane() { 
-        return {
-            name: "Bane",
-            label: "Toggled Effect: Bane",
-            icon: "modules/ThandulsTogglableEffects/media/bane.jpg",
-            duration: getDurationData(1),
-            changes: [
-                {key: "data.bonuses.abilities.save", mode: 2, value: "-1d4"},
-                {key: "data.bonuses.msak.attack", mode: 2, value: "-1d4"},
-                {key: "data.bonuses.mwak.attack", mode: 2, value: "-1d4"},
-                {key: "data.bonuses.rsak.attack", mode: 2, value: "-1d4"},
-                {key: "data.bonuses.rwak.attack", mode: 2, value: "-1d4"},
-            ],
-        };
-    }
-
-    static barkskin() { 
-        return {
-            name: "Barkskin",
-            label: "Toggled Effect: Barkskin",
-            icon: "modules/ThandulsTogglableEffects/media/barkskin.jpg",
-            duration: getDurationData(60),
-            changes: [
-                {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 60},
-              ],
-        };
-    }
-
-    static bless() { 
-        return {
-            name: "Bless",
-            label: "Toggled Effect: Bless",
-            icon: "modules/ThandulsTogglableEffects/media/bless.jpg",
-            duration: getDurationData(1),
-            changes: [
-                {key: "data.bonuses.abilities.save", mode: 2, value: "1d4"},
-                {key: "data.bonuses.msak.attack", mode: 2, value: "1d4"},
-                {key: "data.bonuses.mwak.attack", mode: 2, value: "1d4"},
-                {key: "data.bonuses.rsak.attack", mode: 2, value: "1d4"},
-                {key: "data.bonuses.rwak.attack", mode: 2, value: "1d4"},
-              ],
-        };
-    }
-
-    static enlarge() { 
-        return {
-            name: "Enlarge",
-            label: "Toggled Effect: Enlarge",
-            icon: "modules/ThandulsTogglableEffects/media/enlargereduce.jpg",
-            duration: getDurationData(1),
-            changes: [
-                {key: "data.bonuses.mwak.damage", mode: 2, value: "1d4"},
-                {key: "data.bonuses.rwak.damage", mode: 2, value: "1d4"},
-              ],
-        };
-    }
-
-    static fly() { 
-        return {
-            name: "Fly",
-            label: "Toggled Effect: Fly",
-            icon: "modules/ThandulsTogglableEffects/media/fly.jpg",
-            duration: getDurationData(10),
-            changes: [
-                {key: "data.attributes.movement.fly", mode: 4, value: 60},
-              ],
-        };
-    }
-
-    static fortunesFavor() { 
-        return {
-            name: "Fortune's Favor",
-            label: "Toggled Effect: Fortune's Favor",
-            icon: "modules/ThandulsTogglableEffects/media/fortunes-favor.jpg",
-            duration: getDurationData(60),
-            changes: [
-                {key: "data.attributes.inspiration", mode: 4, value: "1"},
-              ],
-        };
-    }
-
-    static giftOfAlacrity() { 
-        return {
-            name: "Gift of Alacrity",
-            label: "Toggled Effect: Gift of Alacrity",
-            icon: "modules/ThandulsTogglableEffects/media/gift-of-alacrity.jpg",
-            duration: getDurationData(480),
-            changes: [
-                {key: "data.attributes.init.value", mode: 2, value: "1d8"},
-              ],
-        };
-    }
-
-    static guidance() { 
-        return {
-            name: "Guidance",
-            label: "Toggled Effect: Guidance",
-            icon: "modules/ThandulsTogglableEffects/media/guidance.jpg",
-            duration: getDurationData(1),
-            flags: {
-                dae: {
-                    specialDuration: ["isCheck", "isSkill"]
-                }
-            },
-            changes: [
-                {key: "data.bonuses.abilities.check", mode: 2, value: "+1d4"},
-                {key: "data.attributes.init.value", mode: 2, value: "+1d4"},
-              ],
-        };
-    }
-
-    static haste() { 
-        return {
-            name: "Haste",
-            label: "Toggled Effect: Haste",
-            icon: "modules/ThandulsTogglableEffects/media/haste.jpg",
-            duration: getDurationData(1),
-            changes: [
-                {key: "data.attributes.ac.value", mode: 2, value: 2, priority: 80},
-                {key: "data.attributes.movement.burrow", mode: 1, value: 2},
-                {key: "data.attributes.movement.climb", mode: 1, value: 2},
-                {key: "data.attributes.movement.fly", mode: 1, value: 2},
-                {key: "data.attributes.movement.swim", mode: 1, value: 2},
-                {key: "data.attributes.movement.walk", mode: 1, value: 2},
-              ],
-        };
-    }
-
-    static huntersMark(durationHours) { 
-        return {
-            name: "Hunter's Mark " + durationHours + "h",
-            label: "Toggled Effect: Hunter's Mark",
-            icon: "modules/ThandulsTogglableEffects/media/hunters-mark.jpg",
-            duration: getDurationData(60 * durationHours),
-            changes: [
-                {key: "data.bonuses.mwak.damage", mode: 2, value: "1d6"},
-                {key: "data.bonuses.rwak.damage", mode: 2, value: "1d6"},
-              ],
-        };
-    }
-
-    static longstrider() { 
-        return {
-            name: "Longstrider",
-            label: "Toggled Effect: Longstrider",
-            icon: "modules/ThandulsTogglableEffects/media/longstrider.jpg",
-            duration: getDurationData(60),
-            changes: [
-                {key: "data.attributes.movement.burrow", mode: 2, value: 10},
-                {key: "data.attributes.movement.climb", mode: 2, value: 10},
-                {key: "data.attributes.movement.fly", mode: 2, value: 10},
-                {key: "data.attributes.movement.swim", mode: 2, value: 10},
-                {key: "data.attributes.movement.walk", mode: 2, value: 10},
-              ],
-        };
-    }
-
-    static mageArmor(dexMod=0) { 
-        return {
-            name: "Mage Armor",
-            label: "Toggled Effect: Mage Armor",
-            icon: "modules/ThandulsTogglableEffects/media/mage-armor.jpg",
-            duration: getDurationData(480),
-            changes: [
-                {key: "data.attributes.ac.value", mode: 4, value: isDAEEnabled() ? '13 + @data.abilities.dex.mod' : 13 + dexMod},
-              ],
-        };
-    }
-
-    static passWithoutTrace() { 
-        return {
-            name: "Pass without Trace",
-            label: "Toggled Effect: Pass without Trace",
-            icon: "modules/ThandulsTogglableEffects/media/pass-without-trace.jpg",
-            duration: getDurationData(60),
-            changes: [
-                {key: "data.skills.ste.mod", mode: 2, value: "10"},
-              ],
-        };
     }
 
     static rage(actor) { 
@@ -289,20 +204,7 @@ class ThandulBuffsAndEffects {
         return rageData;
     }
 
-    static reduce() { 
-        return {
-            name: "Reduce",
-            label: "Toggled Effect: Reduce",
-            icon: "modules/ThandulsTogglableEffects/media/enlargereduce.jpg",
-            duration: getDurationData(1),
-            changes: [
-                {key: "data.bonuses.mwak.damage", mode: 2, value: "-1d4"},
-                {key: "data.bonuses.rwak.damage", mode: 2, value: "-1d4"},
-              ],
-        };
-    }
-
-    static shield(actor=undefined) { 
+    static shield(actor=undefined) {
         let currentCombat = game.combats.combats.filter(combat => combat.combatants.map(combatant => combatant.actor.id).includes(actor != undefined ? actor.id : ''))[0]
         let combatantCount = currentCombat != undefined ? currentCombat.combatants.length : 0;
         return {
@@ -317,57 +219,6 @@ class ThandulBuffsAndEffects {
             },
             changes: [
                 {key: "data.attributes.ac.value", mode: 2, value: "5"},
-              ],
-        };
-    }
-
-    static shieldOfFaith() { 
-        return {
-            name: "Shield of Faith",
-            label: "Toggled Effect: Shield of Faith",
-            icon: "modules/ThandulsTogglableEffects/media/shield-of-faith.jpg",
-            duration: getDurationData(10),
-            changes: [
-                {key: "data.attributes.ac.value", mode: 2, value: "2"},
-              ],
-        };
-    }
-
-    static slow() { 
-        return {
-            name: "Slow",
-            label: "Toggled Effect: Slow",
-            icon: "modules/ThandulsTogglableEffects/media/slow.jpg",
-            duration: getDurationData(1),
-            changes: [
-                {key: "data.attributes.ac.value", mode: 2, value: "-2"},
-                {key: "data.abilities.dex.save", mode: 2, value: "-2"},
-              ],
-        };
-    }
-
-    static favouredEnemy() { 
-        return {
-            name: "Favoured Enemy",
-            label: "Toggled Effect: Favoured Enemy",
-            icon: "modules/ThandulsTogglableEffects/media/favoured-enemy.png",
-            duration: getDurationData(100),
-            changes: [
-                {key: "data.bonuses.mwak.damage", mode: 2, value: "2"},
-                {key: "data.bonuses.rwak.damage", mode: 2, value: "2"},
-              ],
-        };
-    }
-
-    static greaterFavouredEnemy() { 
-        return {
-            name: "Greater Favoured Enemy",
-            label: "Toggled Effect: Greater Favoured Enemy",
-            icon: "modules/ThandulsTogglableEffects/media/favoured-enemy.png",
-            duration: getDurationData(100),
-            changes: [
-                {key: "data.bonuses.mwak.damage", mode: 2, value: "4"},
-                {key: "data.bonuses.rwak.damage", mode: 2, value: "4"},
               ],
         };
     }
