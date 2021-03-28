@@ -41,6 +41,15 @@ Hooks.once("init", () => {
 		type: String
 	});
 
+	game.settings.register("ThandulsTogglableEffects", "enableAutomation", {
+		name: "Enable effect automation",
+		hint: "Some effects like Barkskin, Rage, Mage Armor and Shield can be automatically applied to Actor that used appropiate skill.",
+		scope: "world",
+		config: true,
+		default: true,
+		type: Boolean
+	});
+
 	// Enabling effects for client.
 	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Bane", {
 		name: "Bane",

@@ -1,4 +1,5 @@
 function handleChatMessage(message) {
+    if (!game.settings.get("ThandulsTogglableEffects", "enableAutomation")) { return; }
     const itemIdRegex = /data-item-id="(.*?)"/gm;
 
     const messageData = message.data;

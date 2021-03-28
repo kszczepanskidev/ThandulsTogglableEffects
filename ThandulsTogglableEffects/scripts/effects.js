@@ -254,16 +254,22 @@ class ThandulBuffsAndEffects {
             label: "Toggled Effect: Rage",
             icon: "modules/ThandulsTogglableEffects/media/rage.jpg",
             duration: getDurationData(1),
-            changes: [
-                {key: "data.bonuses.mwak.damage", mode: 2, value: "2"},
-                {key: "data.traits.dr.value", mode: 2, value: "bludgeoning"},
-                {key: "data.traits.dr.value", mode: 2, value: "piercing"},
-                {key: "data.traits.dr.value", mode: 2, value: "slashing"},
-              ],
+            changes: []
         };
         if (!actor) { return rageData; }
         const classItem = actor.data.items.filter(isBarbarianClassItem)[0];
-        if (!classItem) { ui.notifications.warn("Selected actor is not a Barbarian"); return {} }
+        if (!classItem) { ui.notifications.warn("Selected actor is not a Barbarian"); return {}; }
+        let rageDamageBonus = "+2";
+        if (classItem.levels > 15) { rageDamageBonus = "+4" }
+        else if (classItem.levels > 8) { rageDamageBonus = "+3" }
+        rageData.changes.push(
+            ...[
+                {key: "data.bonuses.mwak.damage", mode: 2, value: rageDamageBonus},
+                {key: "data.traits.dr.value", mode: 2, value: "bludgeoning"},
+                {key: "data.traits.dr.value", mode: 2, value: "piercing"},
+                {key: "data.traits.dr.value", mode: 2, value: "slashing"},
+            ]
+        );
         if(classItem.data.subclass === "Path of the Totem Warrior") {
             rageData.changes.push(
                 ...[
