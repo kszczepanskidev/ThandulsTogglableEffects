@@ -166,8 +166,14 @@ class ThandulBuffsAndEffects {
             label: "Toggled Effect: Guidance",
             icon: "modules/ThandulsTogglableEffects/media/guidance.jpg",
             duration: getDurationData(1),
+            flags: {
+                dae: {
+                    specialDuration: ["isCheck", "isSkill"]
+                }
+            },
             changes: [
-                {key: "data.bonuses.abilities.check", mode: 2, value: "1d4"},
+                {key: "data.bonuses.abilities.check", mode: 2, value: "+1d4"},
+                {key: "data.attributes.init.value", mode: 2, value: "+1d4"},
               ],
         };
     }
