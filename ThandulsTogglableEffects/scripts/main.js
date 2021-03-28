@@ -1,7 +1,8 @@
 function createTogglablesTable() {
 
     // Create array of HTML elements for effects enabled in settings.
-    let togglablesHTML = arrayChunk(ThandulBuffsAndEffects.getEnabledEffects(), 4).map(effects => createEffectsRowHTML(effects)).join('');
+    let effectsPerRow = parseInt(game.settings.get("ThandulsTogglableEffects", "togglesPerRow")) || 4;
+    let togglablesHTML = arrayChunk(ThandulBuffsAndEffects.getEnabledEffects(), effectsPerRow).map(effects => createEffectsRowHTML(effects)).join('');
     togglablesHTML = "<div class=\"thandulTogglables\">" + togglablesHTML + "</div>";
     
     // Extract token controls button for this module.

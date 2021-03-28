@@ -32,6 +32,15 @@ Hooks.once("init", () => {
         onChange: _ => window.location.reload()
 	});
 
+	game.settings.register("ThandulsTogglableEffects", "togglesPerRow", {
+		name: "Number of effect toggles per row",
+		hint: "Number of effect toggles thatg will be displayed in one row of the panel.",
+		scope: "world",
+		config: true,
+		default: 4,
+		type: String
+	});
+
 	// Enabling effects for client.
 	game.settings.register("ThandulsTogglableEffects", "enabledEffects.Bane", {
 		name: "Bane",
