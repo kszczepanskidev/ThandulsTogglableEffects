@@ -10,7 +10,7 @@ Hooks.on("createChatMessage", (message, params, actorId) => {
 
 Hooks.on("getSceneControlButtons", (sceneControlButtons) => {
 	if (!game.settings.get("ThandulsTogglableEffects", "showForPlayers") && game.user.role < 3) { return; }
-	let tokenButton = sceneControlButtons.filter(b => b.name === "token")[0];
+	let tokenButton = sceneControlButtons.find(b => b.name === "token");
 	if (!tokenButton) { return; }
 	tokenButton.tools.push(
         {

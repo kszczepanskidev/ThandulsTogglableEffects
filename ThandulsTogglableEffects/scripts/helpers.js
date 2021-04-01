@@ -20,10 +20,6 @@ function getDurationData(minutes, turns=0) {
     }
 }
 
-function isBarbarianClassItem(item) {
-	return (item.type === "class" && item.name === "Barbarian");
-}
-
 function isDAEEnabled() {
     return game.modules.get("dae")?.active;
 }

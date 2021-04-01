@@ -125,6 +125,18 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+4"},
             {key: "data.bonuses.rwak.damage", mode: 2, value: "+4"},
         ]),
+        new TogglableEffect("Sharpshooter", "Sharpshooter", "modules/ThandulsTogglableEffects/media/sharpshooter.jpg", 0.1, 1, {
+            dae: { specialDuration: ["turnEnd"] }
+        }, [
+            {key: "data.bonuses.rwak.attack", mode: 2, value: "-5"},
+            {key: "data.bonuses.rwak.damage", mode: 2, value: "+10"},
+        ]),
+        new TogglableEffect("Great Weapon Master", "Great Weapon Master", "modules/ThandulsTogglableEffects/media/great-weapon-master.jpg", 0.1, 1, {
+            dae: { specialDuration: ["turnEnd"] }
+        }, [
+            {key: "data.bonuses.mwak.attack", mode: 2, value: "-5"},
+            {key: "data.bonuses.mwak.damage", mode: 2, value: "+10"},
+        ]),
     ];
 
     static getEnabledEffects() {
@@ -145,18 +157,15 @@ class ThandulBuffsAndEffects {
     }
 
     static getEffectForActor(actor, toggleEvent) {
-        let togglableEffect = this.effects.filter(effect => effect.name == toggleEvent.target.dataset.effectName)[0];
+        let togglableEffect = this.effects.find(effect => effect.name == toggleEvent.target.dataset.effectName);
         if (!togglableEffect) { return; }
         
         let effect;
         let customEffectValue;
-        switch(toggleEvent.target.dataset.effectName) {
-            default: break;
-            case "Mage Armor": customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString(); break;
-        }
         switch (togglableEffect.name) {
             case "Rage": effect = this.rage(actor); break;
             case "Shield": effect = this.shield(actor); break;
+            case "Mage Armor": customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString();
             default: effect = togglableEffect.effectDict(customEffectValue); break;
         }
         effect.origin = "Actor." + actor.id;
@@ -172,7 +181,7 @@ class ThandulBuffsAndEffects {
             changes: []
         };
         if (!actor) { return rageData; }
-        const classItem = actor.data.items.filter(isBarbarianClassItem)[0];
+        const classItem = actor.data.items.find(item => item.type === "class" && item.name === "Barbarian");
         if (!classItem) { ui.notifications.warn("Selected actor is not a Barbarian"); return {}; }
         let rageDamageBonus = "+2";
         if (classItem.levels > 15) { rageDamageBonus = "+4" }
@@ -205,7 +214,7 @@ class ThandulBuffsAndEffects {
     }
 
     static shield(actor=undefined) {
-        let currentCombat = game.combats.combats.filter(combat => combat.combatants.map(combatant => combatant.actor.id).includes(actor != undefined ? actor.id : ''))[0]
+        let currentCombat = game.combats.combats.find(combat => combat.combatants.map(combatant => combatant.actor.id).includes(actor != undefined ? actor.id : ''));
         let combatantCount = currentCombat != undefined ? currentCombat.combatants.length : 0;
         return {
             name: "Shield",
