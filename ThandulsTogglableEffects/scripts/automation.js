@@ -4,27 +4,21 @@ function handleChatMessage(message) {
 
     const messageData = message.data;
     const matchResults = itemIdRegex.exec(messageData.content);
-    console.warn("matchResults:" + matchResults);
     if(!matchResults) { return; }
 
     const itemId = matchResults.length > 1 ? matchResults[1] : null;
-    console.warn("itemId:" + itemId);
     if (!itemId) { return; }
 
 	const actorId = messageData.speaker.actor || null;
-    console.warn("actorId:" + actorId);
     if (!actorId) { return; }
     
     const actor = game.actors.get(actorId);
-    console.warn("actor:" + actor);
     if (!actor || actor.permission < 3) { return; }
 
     const item = actor.getOwnedItem(itemId);
-    console.warn("item:" + item);
     if (!item) { return; }
 
     let togglableEffect = ThandulBuffsAndEffects.effects.find(effect => effect.name == item.name);
-    console.warn("togglableEffect:" + togglableEffect);
     if (!togglableEffect) { return; }
     let effect;
     let customEffectValue;

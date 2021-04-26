@@ -137,6 +137,10 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.mwak.attack", mode: 2, value: "-5"},
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+10"},
         ]),
+        new TogglableEffect("Darkvision", "Darkvision", "modules/ThandulsTogglableEffects/media/darkvision.jpg", 480, undefined, {}, [
+            {key: "data.attributes.senses.darkvision", mode: 4, value: "60"},
+        ]),
+        new TogglableEffect("Hybrid Transformation", "Hybrid Transformation", "modules/ThandulsTogglableEffects/media/hybrid-transformation.jpg"),
     ];
 
     static getEnabledEffects() {
@@ -166,6 +170,7 @@ class ThandulBuffsAndEffects {
             case "Rage": effect = this.rage(actor); break;
             case "Shield": effect = this.shield(actor); break;
             case "Mage Armor": customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString();
+            case "Hybrid Transformation": effect = this.hybridTransformation(actor); break;
             default: effect = togglableEffect.effectDict(customEffectValue); break;
         }
         effect.origin = "Actor." + actor.id;
@@ -227,7 +232,35 @@ class ThandulBuffsAndEffects {
                 }
             },
             changes: [
-                {key: "data.attributes.ac.value", mode: 2, value: "5"},
+                {key: "data.attributes.ac.value", mode: 2, value: "+5"},
+              ],
+        };
+    }
+
+    static hybridTransformation(actor=undefined) {
+        let currentCombat = game.combats.combats.find(combat => combat.combatants.map(combatant => combatant.actor.id).includes(actor != undefined ? actor.id : ''));
+        let combatantCount = currentCombat != undefined ? currentCombat.combatants.length : 0;
+        let damageBonus = "";
+        if (actor.data.data.details.level < 11) {
+            damageBonus = "+1";
+        } else if (actor.data.data.details.level < 18) {
+            damageBonus = "+2";
+        } else {
+            damageBonus = "+3";
+        }
+        let acBonus = "+1";
+        if (actor.data.items.filter(item => item.data.armor != undefined).find(armor => armor.data.armor.type == "heavy" && armor.data.equipped) != undefined) {
+            acBonus = "+0";
+        }
+        return {
+            name: "Hybrid Transformation",
+            label: "Toggled Effect: Hybrid Transformation",
+            icon: "modules/ThandulsTogglableEffects/media/hybrid-transformation.jpg",
+            duration: getDurationData(60),
+            changes: [
+                {key: "data.bonuses.mwak.damage", mode: 2, value: damageBonus},
+                {key: "data.traits.dr.custom", mode: 2, value: "Resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks not made with silver weapons."},
+                {key: "data.attributes.ac.value", mode: 2, value: acBonus},
               ],
         };
     }
