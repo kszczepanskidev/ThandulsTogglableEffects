@@ -169,8 +169,9 @@ class ThandulBuffsAndEffects {
         switch (togglableEffect.name) {
             case "Rage": effect = this.rage(actor); break;
             case "Shield": effect = this.shield(actor); break;
-            case "Mage Armor": customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString();
             case "Hybrid Transformation": effect = this.hybridTransformation(actor); break;
+            
+            case "Mage Armor": customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString();
             default: effect = togglableEffect.effectDict(customEffectValue); break;
         }
         effect.origin = "Actor." + actor.id;

@@ -18,7 +18,7 @@ function handleChatMessage(message) {
     const item = actor.getOwnedItem(itemId);
     if (!item) { return; }
 
-    let togglableEffect = ThandulBuffsAndEffects.effects.find(effect => effect.name == item.name);
+    let togglableEffect = ThandulBuffsAndEffects.getEnabledEffects().find(effect => effect.name == item.name);
     if (!togglableEffect) { return; }
     let effect;
     let customEffectValue;
