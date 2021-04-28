@@ -41,7 +41,7 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.rwak.attack", mode: 2, value: "-1d4"},
         ]),
         new TogglableEffect("Barkskin", "Barkskin", "modules/ThandulsTogglableEffects/media/barkskin.jpg", 60, undefined, {}, [
-            {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 60}
+            {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 5}
         ]),
         new TogglableEffect("Bless", "Bless", "modules/ThandulsTogglableEffects/media/bless.jpg", 1, undefined, {}, [
             {key: "data.bonuses.abilities.save", mode: 2, value: "+1d4"},
@@ -55,10 +55,10 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d4"},
         ]),
         new TogglableEffect("Fly", "Fly", "modules/ThandulsTogglableEffects/media/fly.jpg", 10, undefined, {}, [
-            {key: "data.attributes.movement.fly", mode: 4, value: 60},
+            {key: "data.attributes.movement.fly", mode: 4, value: 60, priority: 5},
         ]),
         new TogglableEffect("Fortune's Favor", "Fortune's Favor", "modules/ThandulsTogglableEffects/media/fortunes-favor.jpg", 60, undefined, {}, [
-            {key: "data.attributes.inspiration", mode: 4, value: "1"},
+            {key: "data.attributes.inspiration", mode: 4, value: "1", priority: 5},
         ]),
         new TogglableEffect("Gift of Alacrity", "Gift of Alacrity", "modules/ThandulsTogglableEffects/media/gift-of-alacrity.jpg", 480, undefined, {}, [
             {key: "data.attributes.init.value", mode: 2, value: "+1d8"},
@@ -73,11 +73,11 @@ class ThandulBuffsAndEffects {
         ]),
         new TogglableEffect("Haste", "Haste", "modules/ThandulsTogglableEffects/media/haste.jpg", 1, undefined, {}, [
             {key: "data.attributes.ac.value", mode: 2, value: "+2", priority: 80},
-            {key: "data.attributes.movement.burrow", mode: 1, value: 2},
-            {key: "data.attributes.movement.climb", mode: 1, value: 2},
-            {key: "data.attributes.movement.fly", mode: 1, value: 2},
-            {key: "data.attributes.movement.swim", mode: 1, value: 2},
-            {key: "data.attributes.movement.walk", mode: 1, value: 2},
+            {key: "data.attributes.movement.burrow", mode: 1, value: 2, priority: 10},
+            {key: "data.attributes.movement.climb", mode: 1, value: 2, priority: 10},
+            {key: "data.attributes.movement.fly", mode: 1, value: 2, priority: 10},
+            {key: "data.attributes.movement.swim", mode: 1, value: 2, priority: 10},
+            {key: "data.attributes.movement.walk", mode: 1, value: 2, priority: 10},
         ]),
         new TogglableEffect("Hunter's Mark 1h", "Hunter's Mark 1h", "modules/ThandulsTogglableEffects/media/hunters-mark.jpg", 60, undefined, {}, [
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d6"},
@@ -99,7 +99,7 @@ class ThandulBuffsAndEffects {
             {key: "data.attributes.movement.walk", mode: 2, value: "+10"},
         ]),
         new TogglableEffect("Mage Armor", "Mage Armor", "modules/ThandulsTogglableEffects/media/mage-armor.jpg", 480, undefined, {}, [
-            {key: "data.attributes.ac.value", mode: 4, value: "{value}"},
+            {key: "data.attributes.ac.value", mode: 4, value: "{value}", priority: 5},
         ]),
         new TogglableEffect("Pass without Trace", "Pass without Trace", "modules/ThandulsTogglableEffects/media/pass-without-trace.jpg", 60, undefined, {}, [
             {key: "data.skills.ste.mod", mode: 2, value: "+10"},
@@ -138,7 +138,7 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+10"},
         ]),
         new TogglableEffect("Darkvision", "Darkvision", "modules/ThandulsTogglableEffects/media/darkvision.jpg", 480, undefined, {}, [
-            {key: "data.attributes.senses.darkvision", mode: 4, value: "60"},
+            {key: "data.attributes.senses.darkvision", mode: 4, value: "60", priority: 5},
         ]),
         new TogglableEffect("Hybrid Transformation", "Hybrid Transformation", "modules/ThandulsTogglableEffects/media/hybrid-transformation.jpg"),
     ];
