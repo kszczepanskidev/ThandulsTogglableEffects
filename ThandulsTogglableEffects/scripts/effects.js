@@ -155,8 +155,8 @@ class ThandulBuffsAndEffects {
         for (const actor of canvas.tokens.controlled.map(token => token.actor)) {
             let toggledEffect = ThandulBuffsAndEffects.getEffectForActor(actor, toggleEvent);
             if (!toggledEffect) { continue; }
-            let effectToRemove = actor.data.effects.find(effect => effect.label == toggledEffect.label);
-            effectToRemove ? actor.deleteEmbeddedEntity("ActiveEffect", effectToRemove._id) : actor.createEmbeddedEntity("ActiveEffect", toggledEffect);
+            let effectToRemove = Array.from(actor.data.effects.values()).find(effect => effect.data.label == toggledEffect.label);
+            effectToRemove ? actor.deleteEmbeddedDocuments("ActiveEffect", [effectToRemove.id]) : actor.createEmbeddedDocuments("ActiveEffect", [toggledEffect]);
         }
     }
 

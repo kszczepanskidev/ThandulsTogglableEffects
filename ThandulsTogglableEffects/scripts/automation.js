@@ -35,7 +35,7 @@ function handleChatMessage(message) {
     }
     effect.origin = "Actor." + actor.id;
 
-    let effectToRemove = actor.data.effects.find(e => e.label == effect.label);
-    if (effectToRemove) { actor.deleteEmbeddedEntity("ActiveEffect", effectToRemove._id); }
-    actor.createEmbeddedEntity("ActiveEffect", effect);
+    let effectToRemove = Array.from(actor.data.effects.values()).find(e => e.data.label == effect.label);
+    if (effectToRemove) { actor.deleteEmbeddedDocuments("ActiveEffect", [effectToRemove.id]); }
+    actor.createEmbeddedDocuments("ActiveEffect", [effect]);
 }
