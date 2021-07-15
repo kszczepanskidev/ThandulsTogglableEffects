@@ -41,7 +41,11 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.rwak.attack", mode: 2, value: "-1d4"},
         ]),
         new TogglableEffect("Barkskin", "Barkskin", "modules/ThandulsTogglableEffects/media/barkskin.jpg", 60, undefined, {}, [
-            {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 5}
+            {key: "data.attributes.ac.value", mode: 4, value: 16, priority: 5},
+        ]),
+        new TogglableEffect("Beacon of Hope", "Beacon of Hope", "modules/ThandulsTogglableEffects/media/beacon-of-hope.jpg", 1, undefined, {}, [
+            {key: "flags.midi-qol.advantage.ability.save.wis", mode: 2, value: 1},
+            {key: "flags.midi-qol.advantage.deathSave", mode: 2, value: 1},
         ]),
         new TogglableEffect("Bless", "Bless", "modules/ThandulsTogglableEffects/media/bless.jpg", 1, undefined, {}, [
             {key: "data.bonuses.abilities.save", mode: 2, value: "+1d4"},
@@ -51,14 +55,22 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.rwak.attack", mode: 2, value: "+1d4"},
         ]),
         new TogglableEffect("Enlarge", "Enlarge", "modules/ThandulsTogglableEffects/media/enlargereduce.jpg", 1, undefined, {}, [
-            {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d4"},
-            {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d4"},
+            {key: "data.bonuses.weapon.damage", mode: 2, value: "+1d4"},
+            {key: "flags.midi-qol.advantage.ability.check.str", mode: 2, value: 1},
+            {key: "flags.midi-qol.advantage.ability.save.str", mode: 2, value: 1},
+        ]),
+        new TogglableEffect("Flanking", "Flanking", "modules/ThandulsTogglableEffects/media/flanking.jpg", 10, undefined, {}, [
+            {key: "flags.midi-qol.advantage.attack.mwak", mode: 2, value: 1},
+            {key: "flags.midi-qol.advantage.attack.msak", mode: 2, value: 1},
         ]),
         new TogglableEffect("Fly", "Fly", "modules/ThandulsTogglableEffects/media/fly.jpg", 10, undefined, {}, [
             {key: "data.attributes.movement.fly", mode: 4, value: 60, priority: 5},
         ]),
         new TogglableEffect("Fortune's Favor", "Fortune's Favor", "modules/ThandulsTogglableEffects/media/fortunes-favor.jpg", 60, undefined, {}, [
-            {key: "data.attributes.inspiration", mode: 4, value: "1", priority: 5},
+            {key: "data.attributes.inspiration", mode: 4, value: 1, priority: 5},
+        ]),
+        new TogglableEffect("Greater Invisibility", "Greater Invisibility", "modules/ThandulsTogglableEffects/media/greater-invisibility.jpg", 1, undefined, {}, [
+            {key: "flags.midi-qol.advantage.attack.all", mode: 2, value: 1},
         ]),
         new TogglableEffect("Gift of Alacrity", "Gift of Alacrity", "modules/ThandulsTogglableEffects/media/gift-of-alacrity.jpg", 480, undefined, {}, [
             {key: "data.attributes.init.value", mode: 2, value: "+1d8"},
@@ -78,6 +90,10 @@ class ThandulBuffsAndEffects {
             {key: "data.attributes.movement.fly", mode: 1, value: 2, priority: 10},
             {key: "data.attributes.movement.swim", mode: 1, value: 2, priority: 10},
             {key: "data.attributes.movement.walk", mode: 1, value: 2, priority: 10},
+            {key: "flags.midi-qol.advantage.ability.save.dex", mode: 2, value: 1, priority: 10},
+        ]),
+        new TogglableEffect("Holy Aura", "Holy Aura", "modules/ThandulsTogglableEffects/media/holy-aura.jpg", 1, undefined, {}, [
+            {key: "flags.midi-qol.advantage.attack.all", mode: 2, value: 1},
         ]),
         new TogglableEffect("Hunter's Mark 1h", "Hunter's Mark 1h", "modules/ThandulsTogglableEffects/media/hunters-mark.jpg", 60, undefined, {}, [
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d6"},
@@ -90,6 +106,13 @@ class ThandulBuffsAndEffects {
         new TogglableEffect("Hunter's Mark 24h", "Hunter's Mark 24h", "modules/ThandulsTogglableEffects/media/hunters-mark.jpg", 60 * 24, undefined, {}, [
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+1d6"},
             {key: "data.bonuses.rwak.damage", mode: 2, value: "+1d6"},
+        ]),
+        new TogglableEffect("Invisibility", "Invisibility", "modules/ThandulsTogglableEffects/media/invisibility.jpg", 1, undefined, {
+            dae: {
+                specialDuration: ["1Attack"]
+            }
+        }, [
+            {key: "flags.midi-qol.advantage.attack.all", mode: 2, value: 1},
         ]),
         new TogglableEffect("Longstrider", "Longstrider", "modules/ThandulsTogglableEffects/media/longstrider.jpg", 60, undefined, {}, [
             {key: "data.attributes.movement.burrow", mode: 2, value: "+10"},
@@ -108,6 +131,8 @@ class ThandulBuffsAndEffects {
         new TogglableEffect("Reduce", "Reduce", "modules/ThandulsTogglableEffects/media/enlargereduce.jpg", 1, undefined, {}, [
             {key: "data.bonuses.mwak.damage", mode: 2, value: "-1d4"},
             {key: "data.bonuses.rwak.damage", mode: 2, value: "-1d4"},
+            {key: "flags.midi-qol.disadvantage.ability.check.str", mode: 2, value: 1},
+            {key: "flags.midi-qol.disadvantage.ability.save.str", mode: 2, value: 1},
         ]),
         new TogglableEffect("Shield", "Shield", "modules/ThandulsTogglableEffects/media/shield.jpg"),
         new TogglableEffect("Shield of Faith", "Shield of Faith", "modules/ThandulsTogglableEffects/media/shield-of-faith.jpg", 1, undefined, {}, [
@@ -116,6 +141,11 @@ class ThandulBuffsAndEffects {
         new TogglableEffect("Slow", "Slow", "modules/ThandulsTogglableEffects/media/slow.jpg", 1, undefined, {}, [
             {key: "data.attributes.ac.value", mode: 2, value: "-2"},
             {key: "data.abilities.dex.save", mode: 2, value: "-2"},
+            {key: "data.attributes.movement.burrow", mode: 1, value: 0.5, priority: 10},
+            {key: "data.attributes.movement.climb", mode: 1, value: 0.5, priority: 10},
+            {key: "data.attributes.movement.fly", mode: 1, value: 0.5, priority: 10},
+            {key: "data.attributes.movement.swim", mode: 1, value: 0.5, priority: 10},
+            {key: "data.attributes.movement.walk", mode: 1, value: 0.5, priority: 10},
         ]),
         new TogglableEffect("Favoured Enemy", "Favoured Enemy", "modules/ThandulsTogglableEffects/media/favoured-enemy.png", 100, undefined, {}, [
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+2"},
@@ -125,14 +155,25 @@ class ThandulBuffsAndEffects {
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+4"},
             {key: "data.bonuses.rwak.damage", mode: 2, value: "+4"},
         ]),
+        new TogglableEffect("Reckless Attack", "Reckless Attack", "modules/ThandulsTogglableEffects/media/reckless-attack.jpg", 0.1, 1, {
+            dae: {
+                specialDuration: ["turnEnd"]
+            }
+        }, [
+            {key: "flags.midi-qol.advantage.attack.mwak", mode: 2, value: 1},
+        ]),
         new TogglableEffect("Sharpshooter", "Sharpshooter", "modules/ThandulsTogglableEffects/media/sharpshooter.jpg", 0.1, 1, {
-            dae: { specialDuration: ["turnEnd"] }
+            dae: {
+                specialDuration: ["turnEnd"]
+            }
         }, [
             {key: "data.bonuses.rwak.attack", mode: 2, value: "-5"},
             {key: "data.bonuses.rwak.damage", mode: 2, value: "+10"},
         ]),
         new TogglableEffect("Great Weapon Master", "Great Weapon Master", "modules/ThandulsTogglableEffects/media/great-weapon-master.jpg", 0.1, 1, {
-            dae: { specialDuration: ["turnEnd"] }
+            dae: {
+                specialDuration: ["turnEnd"]
+            }
         }, [
             {key: "data.bonuses.mwak.attack", mode: 2, value: "-5"},
             {key: "data.bonuses.mwak.damage", mode: 2, value: "+10"},
@@ -141,6 +182,13 @@ class ThandulBuffsAndEffects {
             {key: "data.attributes.senses.darkvision", mode: 4, value: "60", priority: 5},
         ]),
         new TogglableEffect("Hybrid Transformation", "Hybrid Transformation", "modules/ThandulsTogglableEffects/media/hybrid-transformation.jpg"),
+        new TogglableEffect("Vicious Mockery", "Vicious Mockery", "modules/ThandulsTogglableEffects/media/vicious-mockery.jpg", 0.1, undefined, {
+            dae: {
+                specialDuration: ["1Attack"]
+            }
+        }, [
+            {key: "flags.midi-qol.disadvantage.attack.all", mode: 2, value: 1},
+        ]),
     ];
 
     static getEnabledEffects() {
@@ -194,6 +242,8 @@ class ThandulBuffsAndEffects {
         else if (classItem.levels > 8) { rageDamageBonus = "+3" }
         rageData.changes.push(
             ...[
+                {key: "flags.midi-qol.advantage.ability.check.str", mode: 2, value: 1},
+                {key: "flags.midi-qol.advantage.ability.save.stre", mode: 2, value: 1},
                 {key: "data.bonuses.mwak.damage", mode: 2, value: rageDamageBonus},
                 {key: "data.traits.dr.value", mode: 2, value: "bludgeoning"},
                 {key: "data.traits.dr.value", mode: 2, value: "piercing"},

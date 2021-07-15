@@ -29,7 +29,7 @@ function handleChatMessage(message) {
             customEffectValue = isDAEEnabled() ? '13 + @data.abilities.dex.mod' : (13 + actor.data.data.abilities.dex.mod).toString();
             effect = togglableEffect.effectDict(customEffectValue); 
             break;
-        case "Sharpshooter", "Great Weapon Master":
+        case "Sharpshooter", "Great Weapon Master", "Reckless Attack", "Greater Favoured Enemy", "Hybrid Transformation":
             effect = togglableEffect;
         default: return;
     }
