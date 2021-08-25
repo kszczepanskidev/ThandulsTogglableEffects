@@ -3,22 +3,38 @@
     "title": "Thandul's Togglable Effects",
     "description": "Module providing custom scene control that allows toggling buffs and effects for most of common spells on actors associated with selected tokens.",
     "author": "Thandulfan#0087",
-    "version": "1.2.13",
+    "authors": [
+      {
+          "name": "Thandulfan",
+          "url": "https://github.com/krysztalzg",
+          "discord": "Thandulfan#0087"
+      }
+  ],
+    "version": "1.2.14",
     "minimumCoreVersion": "0.8.6",
-    "compatibleCoreVersion":"0.8.8",
+    "compatibleCoreVersion":"0.8.9",
     "systems": [
       "dnd5e"
     ],
     "scripts": [
-      "./scripts/main.js",
-      "./scripts/helpers.js",
-      "./scripts/effects.js",
-      "./scripts/automation.js",
-      "./scripts/hooks.js"
+      "./module.js"
     ],
-    "styles": [
-      "./css/style.css"
+    "dependencies": [
+        {
+            "name": "dfreds-convenient-effects",
+            "type": "module"
+        }
     ],
+    "deprecated": {
+      "reason": "This module is no longer maintained.",
+      "alternatives": [
+        {
+          "name": "dfreds-convenient-effects",
+          "manifest": "https://raw.githubusercontent.com/DFreds/dfreds-convenient-effects/main/module.json"
+        }
+      ]
+    },
+    "manifestPlusVersion": "1.2.0",
 
     "url": "https://github.com/krysztalzg/ThandulsTogglableEffects/",
     "manifest": "https://raw.githubusercontent.com/krysztalzg/ThandulsTogglableEffects/master/ThandulsTogglableEffects/module.json",
